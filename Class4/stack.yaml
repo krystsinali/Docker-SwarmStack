@@ -31,8 +31,9 @@ services:
           - node.role == worker
     ports:
       - "6379:6379"
+
   wordpress:
-    image: wordpress:php7.3
+    image: wordpress:php7.4
     environment:
       WORDPRESS_DB_HOST: "mysql:3306"
       WORDPRESS_DB_USER: wordpress
@@ -50,12 +51,9 @@ services:
       - "80:80"
 
   visualizer:
-    image: visualizer
+    image: dockersamples/visualizer
     deploy:
       mode: global
-      resources:
-        reservations:
-          cpus: '0.5'
       placement:
         constraints: 
           - node.role == manager
